@@ -1,0 +1,10 @@
+<svg width="176" height="48" viewBox="0 0 176 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="8" width="32" height="32" rx="9" fill="#E97F18"/>
+  <path d="M11 17H25V20H11V17Z" fill="#141416"/>
+  <path d="M11 22H20V25H11V22Z" fill="#141416"/>
+  <path d="M11 27H17V30H11V27Z" fill="#141416"/>
+  <circle cx="24" cy="15" r="2.5" fill="#141416"/>
+  <circle cx="28" cy="20" r="2.5" fill="#141416"/>
+  <circle cx="24" cy="33" r="2.5" fill="#141416"/>
+  <text x="42" y="31" fill="#FFFFFF" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.02em">SquadPlan</text>
+</svg>
