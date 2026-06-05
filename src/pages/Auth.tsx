@@ -368,7 +368,7 @@ export function Auth() {
 
         <div className="mx-auto mt-auto flex w-full max-w-[1440px] flex-col items-center justify-between gap-4 px-0 pt-16 text-base tracking-[-0.08em] text-[#92929D] sm:flex-row sm:px-[70px] sm:text-lg lg:pt-24">
           <span className="transition hover:text-[#E97F18]">Privacy Policy</span>
-          <span>Copyright@SquadPlan 2026</span>
+          <span>© 2026 Ngabo Angelos</span>
         </div>
       </div>
     </div>

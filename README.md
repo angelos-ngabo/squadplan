@@ -29,6 +29,10 @@ npm install
 4. Register a web app and copy your config values.
 5. Copy `.env.example` to `.env` and fill in your keys.
 
+For production builds, Vite reads `.env` (or `.env.production`) **at build time**. If you deploy without those values, the hosted app cannot reach Firebase.
+
+Alternatively, copy `public/firebase-config.example.json` to `public/firebase-config.json`, fill in your keys, then build — that file is copied into `dist/` and loaded at runtime.
+
 ### 3. Deploy Firestore rules
 
 ```bash
@@ -46,6 +50,7 @@ npm run dev
 ## Deploy to Firebase Hosting
 
 ```bash
+# Ensure .env exists OR public/firebase-config.json is filled in first
 npm run build
 npx firebase-tools deploy --only hosting,firestore:rules --project YOUR_PROJECT_ID
 ```
@@ -112,4 +117,4 @@ Document ID = event slug.
 
 ## License
 
-MIT
+Copyright © 2026 Ngabo Angelos. Licensed under the [MIT License](LICENSE).

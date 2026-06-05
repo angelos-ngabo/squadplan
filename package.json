@@ -2,6 +2,8 @@
   "name": "squadplan",
   "private": true,
   "version": "0.0.0",
+  "author": "Ngabo Angelos",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",

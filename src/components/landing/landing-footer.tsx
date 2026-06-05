@@ -43,7 +43,7 @@ export function LandingFooter() {
           </div>
         </div>
         <div className={bottom()}>
-          <p className="text-sm text-[#92929D]">© 2026 SquadPlan. All rights reserved.</p>
+          <p className="text-sm text-[#92929D]">© 2026 Ngabo Angelos. All rights reserved.</p>
           <p className="text-sm text-[#92929D]">Kigali, Rwanda · hello@squadplan.app</p>
         </div>
       </div>
