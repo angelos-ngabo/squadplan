@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { tv } from 'tailwind-variants'
 import { useAuth } from '../../hooks/useAuth'
+import { LandingDesktopNav } from './landing-desktop-nav'
 import { LandingMobileNav } from './landing-mobile-nav'
 
 const section = tv({ base: 'relative min-h-[85vh] overflow-hidden bg-[#141416] sm:min-h-[90vh] lg:min-h-[960px]' })
@@ -22,7 +23,9 @@ const outlineBtn = tv({
 const primaryBtn = tv({
   base: 'rounded-[10px] bg-[#E97F18] px-6 py-3 text-center text-base font-semibold text-white transition hover:bg-[#d56f10] sm:px-8',
 })
-const authButton = tv({ base: 'rounded-[10px] px-3 py-2 text-sm font-semibold transition sm:px-6 sm:py-2.5 sm:text-base' })
+const authButton = tv({
+  base: 'hidden rounded-[10px] px-6 py-2.5 text-base font-semibold transition sm:inline-flex',
+})
 const logo = tv({ base: 'h-10 w-auto sm:h-14' })
 const lineGlow = tv({
   base: 'pointer-events-none absolute stroke-[#E97F18] [filter:drop-shadow(0_0_10px_rgba(233,127,24,0.55))]',
@@ -111,16 +114,18 @@ export function LandingHero() {
 
       <HeroOrangeLines />
 
-      <div className={topBar()}>
-        <Link to="/" className="shrink-0">
+      <div className={`${topBar()} relative`}>
+        <Link to="/" className="relative z-10 shrink-0">
           <img src="/logo.svg" alt="SquadPlan" className={logo()} />
         </Link>
-        <div className="ml-auto flex items-center gap-2 sm:gap-3">
+
+        <LandingDesktopNav />
+
+        <div className="relative z-10 ml-auto flex shrink-0 items-center gap-2 sm:gap-3">
           <LandingMobileNav />
           {user ? (
             <Link to="/app" className={authButton({ className: 'bg-[#E97F18] text-white hover:bg-[#d56f10]' })}>
-              <span className="hidden sm:inline">Manage My Events</span>
-              <span className="sm:hidden">My Events</span>
+              Manage My Events
             </Link>
           ) : (
             <Link to="/auth" className={authButton({ className: 'bg-[#E97F18] text-white hover:bg-[#d56f10]' })}>

@@ -20,8 +20,8 @@ export function LandingContact() {
               <Mail className="mt-1 h-5 w-5 shrink-0 text-[#E97F18]" />
               <div>
                 <p className="font-medium text-white">Email</p>
-                <a href="mailto:hello@squadplan.app" className="mt-1 block text-sm hover:text-white">
-                  hello@squadplan.app
+                <a href="mailto:squadplaninfo@gmail.com" className="mt-1 block text-sm hover:text-white">
+                  squadplaninfo@gmail.com
                 </a>
               </div>
             </div>
@@ -29,7 +29,9 @@ export function LandingContact() {
               <Phone className="mt-1 h-5 w-5 shrink-0 text-[#E97F18]" />
               <div>
                 <p className="font-medium text-white">Phone</p>
-                <p className="mt-1 text-sm">+250 788 000 000</p>
+                <a href="tel:+250781889168" className="mt-1 block text-sm hover:text-white">
+                  +250 781 889 168
+                </a>
               </div>
             </div>
             <div className={`mt-6 ${row()}`}>

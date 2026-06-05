@@ -1,14 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { tv } from 'tailwind-variants'
 import { useAuth } from '../../hooks/useAuth'
+import { LandingDesktopNav } from './landing-desktop-nav'
 import { LandingMobileNav } from './landing-mobile-nav'
 
 const headerShell = tv({
   base: 'fixed left-0 right-0 top-0 z-50 transition-all duration-300',
   variants: {
     visible: {
-      true: 'translate-y-0 border-b border-white/5 bg-[#141416]/95 backdrop-blur-md',
+      true: 'translate-y-0 border-b border-white/10 bg-[#141416]/45 backdrop-blur-xl backdrop-saturate-150',
       false: '-translate-y-full pointer-events-none',
     },
   },
@@ -16,25 +17,36 @@ const headerShell = tv({
 const headerInner = tv({
   base: 'relative flex h-16 items-center gap-3 px-4 sm:h-20 sm:px-6 lg:px-[120px]',
 })
-const nav = tv({ base: 'absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-8 lg:flex' })
-const navLink = tv({ base: 'text-xl font-medium text-white/90 transition hover:text-white' })
-const navLinkActive = tv({ base: 'relative text-xl font-medium text-white' })
-const authButton = tv({ base: 'rounded-[10px] px-3 py-2 text-sm font-semibold transition sm:px-6 sm:py-2.5 sm:text-base' })
+const authButton = tv({
+  base: 'hidden rounded-[10px] px-6 py-2.5 text-base font-semibold transition sm:inline-flex sm:px-6 sm:py-2.5',
+})
 const logo = tv({ base: 'h-10 w-auto sm:h-14' })
 
-const navItems = [
-  { href: '#features', label: 'Features' },
-  { href: '#about', label: 'About', active: true },
-  { href: '#team', label: 'Team' },
-  { href: '#contact', label: 'Contact' },
-]
+const SCROLL_THRESHOLD = 80
+const SCROLL_DELTA = 8
 
 export function LandingHeader() {
   const { user } = useAuth()
   const [visible, setVisible] = useState(false)
+  const lastScrollY = useRef(0)
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 80)
+    lastScrollY.current = window.scrollY
+
+    const onScroll = () => {
+      const current = window.scrollY
+
+      if (current < SCROLL_THRESHOLD) {
+        setVisible(false)
+      } else if (current < lastScrollY.current - SCROLL_DELTA) {
+        setVisible(true)
+      } else if (current > lastScrollY.current + SCROLL_DELTA) {
+        setVisible(false)
+      }
+
+      lastScrollY.current = current
+    }
+
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -47,27 +59,13 @@ export function LandingHeader() {
           <img src="/logo.svg" alt="SquadPlan" className={logo()} />
         </Link>
 
-        <nav className={nav()}>
-          {navItems.map((item) =>
-            item.active ? (
-              <a key={item.href} href={item.href} className={navLinkActive()}>
-                <span className="absolute -left-4 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-[#F24E1E]" />
-                {item.label}
-              </a>
-            ) : (
-              <a key={item.href} href={item.href} className={navLink()}>
-                {item.label}
-              </a>
-            ),
-          )}
-        </nav>
+        <LandingDesktopNav />
 
         <div className="relative z-10 ml-auto flex shrink-0 items-center gap-2 sm:gap-3">
           <LandingMobileNav />
           {user ? (
             <Link to="/app" className={authButton({ className: 'bg-[#E97F18] text-white hover:bg-[#d56f10]' })}>
-              <span className="hidden sm:inline">Manage My Events</span>
-              <span className="sm:hidden">My Events</span>
+              Manage My Events
             </Link>
           ) : (
             <Link to="/auth" className={authButton({ className: 'bg-[#E97F18] text-white hover:bg-[#d56f10]' })}>

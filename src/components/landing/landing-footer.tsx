@@ -22,6 +22,7 @@ export function LandingFooter() {
           <div>
             <p className={columnTitle()}>Product</p>
             <a href="#features" className={link()}>Features</a>
+            <a href="#how-it-works" className={`mt-2 ${link()}`}>How it works</a>
             <a href="#about" className={`mt-2 ${link()}`}>About</a>
             <a href="#team" className={`mt-2 ${link()}`}>Team</a>
             <a href="#contact" className={`mt-2 ${link()}`}>Contact</a>
