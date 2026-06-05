@@ -17,9 +17,9 @@ function CopyField({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-lg border border-white/10 bg-[#141416] p-3">
       <p className="text-xs font-medium uppercase tracking-wide text-[#92929D]">{label}</p>
-      <div className="mt-2 flex items-center justify-between gap-3">
-        <p className="break-all text-sm text-white">{value}</p>
-        <Button variant="outline" size="sm" onClick={copyValue}>
+      <div className="mt-2 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
+        <p className="min-w-0 break-all text-sm text-white">{value}</p>
+        <Button variant="outline" size="sm" className="w-full shrink-0 sm:w-auto" onClick={copyValue}>
           {copied ? <Check className="h-4 w-4 text-green-400" /> : <Copy className="h-4 w-4" />}
           {copied ? 'Copied' : 'Copy'}
         </Button>
@@ -57,8 +57,8 @@ export function EventSettingsDialog({
           <h4 className="text-sm font-semibold text-white">Event details</h4>
           <dl className="mt-3 space-y-2 text-sm">
             <div className="flex justify-between gap-4">
-              <dt className="text-[#92929D]">Title</dt>
-              <dd className="text-right text-white">{event.title}</dd>
+              <dt className="shrink-0 text-[#92929D]">Title</dt>
+              <dd className="break-words text-right text-white">{event.title}</dd>
             </div>
             <div className="flex justify-between gap-4">
               <dt className="text-[#92929D]">Date</dt>

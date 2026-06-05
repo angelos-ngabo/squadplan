@@ -93,7 +93,7 @@ export function DashboardMenu({ items, trigger }: { items: DashboardMenuItem[]; 
       )}
 
       {open ? (
-        <div className="absolute right-0 top-full z-50 mt-2 w-60 overflow-hidden rounded-xl border border-white/10 bg-[#1b1b1f] py-2 shadow-2xl">
+        <div className="absolute right-0 top-full z-50 mt-2 w-[min(15rem,calc(100vw-2rem))] overflow-hidden rounded-xl border border-white/10 bg-[#1b1b1f] py-2 shadow-2xl">
           {items.map((item, index) => {
             if (item.type === 'divider') {
               return <div key={`divider-${index}`} className="my-2 border-t border-white/10" />

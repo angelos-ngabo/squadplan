@@ -18,7 +18,7 @@ const card = tv({ base: 'mt-8 max-w-xl rounded-xl border border-white/10 bg-[#1b
 const fieldLabel = tv({ base: 'text-sm font-medium text-[#92929D]' })
 const fieldError = tv({ base: 'mt-1 text-xs text-red-400' })
 const attendanceToggle = tv({
-  base: 'rounded-lg border px-2 py-2 text-xs transition-colors',
+  base: 'rounded-lg border px-3 py-2.5 text-sm transition-colors sm:px-2 sm:py-2 sm:text-xs',
   variants: {
     active: {
       true: 'border-[#E97F18] bg-[#E97F18]/10 text-white',
@@ -35,9 +35,9 @@ const successCard = tv({
 function GuestShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-[#141416]">
-      <div className="flex w-full items-center px-6 py-6 lg:px-[120px]">
+      <div className="flex w-full items-center px-4 py-4 sm:px-6 sm:py-6 lg:px-[120px]">
         <Link to="/" className="shrink-0">
-          <img src="/logo.svg" alt="SquadPlan" className="h-14 w-auto" />
+          <img src="/logo.svg" alt="SquadPlan" className="h-10 w-auto sm:h-14" />
         </Link>
       </div>
       <PageWrapper>{children}</PageWrapper>
@@ -167,7 +167,7 @@ export function JoinEvent() {
         ← Back to home
       </Link>
 
-      <h1 className="mt-1 text-3xl font-bold text-white">{event.title}</h1>
+      <h1 className="mt-1 break-words text-2xl font-bold text-white sm:text-3xl">{event.title}</h1>
       <div className="mt-2 flex flex-wrap gap-4 text-sm text-white/70">
         <span className="flex items-center gap-1.5">
           <CalendarDays className="h-4 w-4 text-[#92929D]" />
@@ -209,7 +209,7 @@ export function JoinEvent() {
 
           <div>
             <p className={fieldLabel()}>Attendance</p>
-            <div className="mt-2 grid grid-cols-3 gap-2">
+            <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-3">
               {(['attending', 'maybe', 'not_attending'] as const).map((state) => (
                 <button
                   key={state}

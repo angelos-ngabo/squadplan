@@ -2,7 +2,7 @@ import { tv } from 'tailwind-variants'
 import type { ActivityEntry } from '../schemas/participant'
 import { formatTimestamp } from '../utils/formatters'
 
-const card = tv({ base: 'rounded-xl border border-white/10 bg-[#1b1b1f] p-5' })
+const card = tv({ base: 'rounded-xl border border-white/10 bg-[#1b1b1f] p-4 sm:p-5' })
 const list = tv({ base: 'max-h-64 space-y-3 overflow-y-auto pr-1' })
 const dot = tv({ base: 'mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#E97F18]' })
 

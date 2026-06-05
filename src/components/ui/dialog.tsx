@@ -4,9 +4,9 @@ import { tv } from 'tailwind-variants'
 
 const overlay = tv({ base: 'fixed inset-0 z-50 bg-black/70' })
 const content = tv({
-  base: 'fixed left-1/2 top-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-xl border border-white/10 bg-[#1b1b1f] p-6 shadow-xl',
+  base: 'fixed left-1/2 top-1/2 z-50 max-h-[90vh] w-[calc(100vw-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-xl border border-white/10 bg-[#1b1b1f] p-5 shadow-xl sm:p-6',
 })
-const title = tv({ base: 'text-lg font-semibold text-white' })
+const title = tv({ base: 'pr-8 text-lg font-semibold text-white' })
 const description = tv({ base: 'mt-1 text-sm text-[#92929D]' })
 
 interface DialogProps {

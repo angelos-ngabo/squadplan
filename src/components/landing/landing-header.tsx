@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { tv } from 'tailwind-variants'
 import { useAuth } from '../../hooks/useAuth'
+import { LandingMobileNav } from './landing-mobile-nav'
 
 const headerShell = tv({
   base: 'fixed left-0 right-0 top-0 z-50 transition-all duration-300',
@@ -13,13 +14,13 @@ const headerShell = tv({
   },
 })
 const headerInner = tv({
-  base: 'relative flex h-20 w-full items-center px-6 lg:px-[120px]',
+  base: 'relative flex h-16 items-center gap-3 px-4 sm:h-20 sm:px-6 lg:px-[120px]',
 })
 const nav = tv({ base: 'absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-8 lg:flex' })
 const navLink = tv({ base: 'text-xl font-medium text-white/90 transition hover:text-white' })
 const navLinkActive = tv({ base: 'relative text-xl font-medium text-white' })
-const authButton = tv({ base: 'rounded-[10px] px-6 py-2.5 text-base font-semibold transition' })
-const logo = tv({ base: 'h-14 w-auto' })
+const authButton = tv({ base: 'rounded-[10px] px-3 py-2 text-sm font-semibold transition sm:px-6 sm:py-2.5 sm:text-base' })
+const logo = tv({ base: 'h-10 w-auto sm:h-14' })
 
 const navItems = [
   { href: '#features', label: 'Features' },
@@ -61,10 +62,12 @@ export function LandingHeader() {
           )}
         </nav>
 
-        <div className="relative z-10 ml-auto flex shrink-0 items-center gap-3">
+        <div className="relative z-10 ml-auto flex shrink-0 items-center gap-2 sm:gap-3">
+          <LandingMobileNav />
           {user ? (
             <Link to="/app" className={authButton({ className: 'bg-[#E97F18] text-white hover:bg-[#d56f10]' })}>
-              Manage My Events
+              <span className="hidden sm:inline">Manage My Events</span>
+              <span className="sm:hidden">My Events</span>
             </Link>
           ) : (
             <Link to="/auth" className={authButton({ className: 'bg-[#E97F18] text-white hover:bg-[#d56f10]' })}>

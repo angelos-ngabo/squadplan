@@ -82,8 +82,9 @@ export function CreateEventDialog() {
       open={open}
       onOpenChange={setOpen}
       trigger={
-        <Button>
-          Create Event
+        <Button size="sm" className="sm:px-4 sm:py-2">
+          <span className="hidden sm:inline">Create Event</span>
+          <span className="sm:hidden">Create</span>
           <ArrowRight className="h-4 w-4" />
         </Button>
       }
@@ -170,7 +171,7 @@ export function CreateEventDialog() {
 
           {createEvent.error ? <p className={fieldError()}>{createEvent.error.message}</p> : null}
 
-          <div className="flex justify-end gap-2 pt-2">
+          <div className="flex flex-col-reverse gap-2 pt-2 sm:flex-row sm:justify-end">
             <DialogClose asChild>
               <Button variant="outline" type="button">
                 Cancel

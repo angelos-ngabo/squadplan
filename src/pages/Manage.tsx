@@ -27,7 +27,7 @@ export function Manage() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#141416]">
+    <div className="min-h-screen overflow-x-hidden bg-[#141416]">
       <DashboardToolbar
         actions={<CreateEventDialog />}
         menuItems={menuItems}
@@ -37,7 +37,7 @@ export function Manage() {
 
       <PageWrapper>
         <div>
-          <h1 className="font-serif text-3xl font-bold text-white">My Events</h1>
+          <h1 className="font-serif text-2xl font-bold text-white sm:text-3xl">My Events</h1>
           <p className="mt-2 text-sm text-[#92929D]">
             Welcome back{user?.displayName ? `, ${user.displayName}` : ''}. Only your events are shown here.
           </p>

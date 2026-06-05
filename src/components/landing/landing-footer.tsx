@@ -43,8 +43,10 @@ export function LandingFooter() {
           </div>
         </div>
         <div className={bottom()}>
-          <p className="text-sm text-[#92929D]">© 2026 Ngabo Angelos. All rights reserved.</p>
-          <p className="text-sm text-[#92929D]">Kigali, Rwanda · hello@squadplan.app</p>
+          <p className="text-sm text-[#92929D]">© 2026 SquadPlan. All rights reserved.</p>
+          <a href="mailto:squadplaninfo@gmail.com" className="text-sm text-[#92929D] transition hover:text-[#E97F18]">
+            squadplaninfo@gmail.com
+          </a>
         </div>
       </div>
     </footer>

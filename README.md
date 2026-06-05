@@ -117,4 +117,4 @@ Document ID = event slug.
 
 ## License
 
-Copyright © 2026 Ngabo Angelos. Licensed under the [MIT License](LICENSE).
+Copyright © 2026 SquadPlan. Licensed under the [MIT License](LICENSE).

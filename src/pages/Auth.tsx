@@ -78,14 +78,14 @@ const AuthField = forwardRef<HTMLInputElement, AuthFieldProps>(function AuthFiel
 
   return (
     <div>
-      <div className="h-[72px] w-full rounded-lg border border-white/10 bg-[#1b1b1f] px-8">
+      <div className="h-14 w-full rounded-lg border border-white/10 bg-[#1b1b1f] px-4 sm:h-[72px] sm:px-8">
         <input
           ref={setRef}
           name={name}
           type={type}
           autoComplete={autoComplete}
           placeholder={placeholder}
-          className="h-full w-full bg-transparent text-lg font-medium text-white outline-none placeholder:text-[#92929D] focus:placeholder:text-[#898889]"
+          className="h-full w-full bg-transparent text-base font-medium text-white outline-none placeholder:text-[#92929D] focus:placeholder:text-[#898889] sm:text-lg"
           onChange={handleChange}
           onInput={handleInput}
           onBlur={onBlur}
@@ -140,11 +140,12 @@ function SocialButtons({ prefix }: { prefix: 'Sign in' | 'Sign up' }) {
         >
           <button
             type="button"
-            className="flex h-[72px] w-full items-center gap-4 rounded-[7px] bg-[#141416] px-8 text-lg font-medium text-white transition hover:bg-[#1b1b1f]"
+            className="flex h-14 w-full items-center gap-3 rounded-[7px] bg-[#141416] px-4 text-base font-medium text-white transition hover:bg-[#1b1b1f] sm:h-[72px] sm:gap-4 sm:px-8 sm:text-lg"
           >
-            <img src={item.icon} alt="" className="h-8 w-8 shrink-0" />
-            <span className="flex-1 text-center">
-              {prefix} with {item.label}
+            <img src={item.icon} alt="" className="h-7 w-7 shrink-0 sm:h-8 sm:w-8" />
+            <span className="flex-1 text-center text-sm sm:text-base">
+              <span className="hidden sm:inline">{prefix} with {item.label}</span>
+              <span className="sm:hidden">{item.label}</span>
             </span>
           </button>
         </div>
@@ -166,9 +167,9 @@ function PrimarySubmitButton({
     <button
       type="submit"
       disabled={isSubmitting}
-      className="flex h-[72px] w-full items-center justify-between rounded-lg bg-gradient-to-r from-[#E97F18] to-[#F24E1E] px-8 disabled:opacity-60"
+      className="flex h-14 w-full items-center justify-between rounded-lg bg-gradient-to-r from-[#E97F18] to-[#F24E1E] px-4 disabled:opacity-60 sm:h-[72px] sm:px-8"
     >
-      <span className="text-lg font-bold text-white">{isSubmitting ? loadingLabel : label}</span>
+      <span className="text-base font-bold text-white sm:text-lg">{isSubmitting ? loadingLabel : label}</span>
       {isSubmitting ? (
         <Loader2 className="h-5 w-5 animate-spin text-white" />
       ) : (
@@ -241,7 +242,7 @@ export function Auth() {
         Back home
       </Link>
 
-      <div className="relative mx-auto flex min-h-screen w-full max-w-[1440px] flex-col px-6 pb-10 pt-24 lg:px-0 lg:pb-0 lg:pt-[204px]">
+      <div className="relative mx-auto flex min-h-screen w-full max-w-[1440px] flex-col px-4 pb-10 pt-20 sm:px-6 sm:pt-24 lg:px-0 lg:pb-0 lg:pt-[204px]">
         <div className="mx-auto flex max-w-[666px] flex-col items-center gap-5 text-center">
           <h1 className="font-[Space_Grotesk] text-4xl font-medium tracking-[-0.08em] sm:text-[54px]">
             {isLogin ? 'Login to Your Account' : 'Create Your Account'}
@@ -353,6 +354,11 @@ export function Auth() {
           <div
             className={`w-full max-w-[440px] lg:mr-[183px] ${isLogin ? 'lg:mt-0' : 'lg:mt-72'}`}
           >
+            <div className="mb-6 flex items-center gap-3 lg:hidden">
+              <div className="h-px flex-1 bg-white/10" />
+              <span className="text-xs font-medium uppercase tracking-wider text-[#92929D]">Or continue with</span>
+              <div className="h-px flex-1 bg-white/10" />
+            </div>
             <SocialButtons prefix={socialPrefix} />
           </div>
         </div>
@@ -368,7 +374,7 @@ export function Auth() {
 
         <div className="mx-auto mt-auto flex w-full max-w-[1440px] flex-col items-center justify-between gap-4 px-0 pt-16 text-base tracking-[-0.08em] text-[#92929D] sm:flex-row sm:px-[70px] sm:text-lg lg:pt-24">
           <span className="transition hover:text-[#E97F18]">Privacy Policy</span>
-          <span>© 2026 Ngabo Angelos</span>
+          <span>© 2026 SquadPlan</span>
         </div>
       </div>
     </div>

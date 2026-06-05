@@ -32,7 +32,7 @@ import { calcProgress } from '../lib/utils'
 import { formatCurrency, formatDate } from '../utils/formatters'
 import type { DashboardMenuItem } from '../components/dashboard-menu'
 
-const card = tv({ base: 'rounded-xl border border-white/10 bg-[#1b1b1f] p-5' })
+const card = tv({ base: 'rounded-xl border border-white/10 bg-[#1b1b1f] p-4 sm:p-5' })
 const attendanceDot = tv({
   base: 'h-2 w-2 rounded-full',
   variants: {
@@ -56,7 +56,7 @@ function DashboardShell({
   children: React.ReactNode
 }) {
   return (
-    <div className="min-h-screen bg-[#141416]">
+    <div className="min-h-screen overflow-x-hidden bg-[#141416]">
       <DashboardToolbar actions={actions} menuItems={menuItems} />
       {settingsDialog}
       <PageWrapper>{children}</PageWrapper>
@@ -147,23 +147,27 @@ export function Dashboard() {
         ← My events
       </Link>
 
-      <h1 className="mt-1 text-3xl font-bold text-white">{event.title}</h1>
-      <div className="mt-2 flex flex-wrap gap-4 text-sm text-white/70">
-        <span className="flex items-center gap-1.5">
-          <CalendarDays className="h-4 w-4 text-[#92929D]" />
+      <h1 className="mt-1 break-words text-2xl font-bold text-white sm:text-3xl">{event.title}</h1>
+      <div className="mt-2 flex flex-col gap-2 text-sm text-white/70 sm:flex-row sm:flex-wrap sm:gap-4">
+        <span className="flex min-w-0 items-center gap-1.5">
+          <CalendarDays className="h-4 w-4 shrink-0 text-[#92929D]" />
           {formatDate(event.date)}
         </span>
-        <span className="flex items-center gap-1.5">
-          <MapPin className="h-4 w-4 text-[#92929D]" />
-          {event.location || 'TBD'}
+        <span className="flex min-w-0 items-center gap-1.5">
+          <MapPin className="h-4 w-4 shrink-0 text-[#92929D]" />
+          <span className="break-words">{event.location || 'TBD'}</span>
         </span>
-        <span className="flex items-center gap-1.5">
-          <User className="h-4 w-4 text-[#92929D]" />
+        <span className="flex min-w-0 items-center gap-1.5">
+          <User className="h-4 w-4 shrink-0 text-[#92929D]" />
           by {event.organizerName}
         </span>
       </div>
 
-      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-4">
+        <ShareButton slug={slug} placement="page" />
+      </div>
+
+      <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         <StatCard label="Budget Target" value={formatCurrency(event.budgetTarget)} subtitle="Total goal" icon={Target} />
         <StatCard
           label="Total Pledged"
@@ -195,8 +199,10 @@ export function Dashboard() {
           <div className="mt-5">
             <ProgressBar value={calcProgress(totals.totalPaid, event.budgetTarget)} label="Progress" />
             <p className="mt-3 text-sm text-white/70">
-              <span className="font-medium text-white/90">{formatCurrency(totals.totalPaid)}</span> raised of{' '}
-              <span className="font-medium text-white/90">{formatCurrency(event.budgetTarget)}</span> target
+              <span className="block sm:inline">
+                <span className="font-medium text-white/90">{formatCurrency(totals.totalPaid)}</span> raised of{' '}
+                <span className="font-medium text-white/90">{formatCurrency(event.budgetTarget)}</span> target
+              </span>
             </p>
             <p className="mt-1 text-xs text-[#92929D]">{formatCurrency(remaining)} remaining</p>
           </div>

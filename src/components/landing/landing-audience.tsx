@@ -1,69 +1,75 @@
-import { useState } from 'react'
-import { Search } from 'lucide-react'
+import { Code2, MapPin } from 'lucide-react'
 import { tv } from 'tailwind-variants'
 
-const section = tv({ base: 'bg-[#141416] py-24' })
-const inner = tv({ base: 'mx-auto max-w-[1200px] px-6' })
-const heading = tv({ base: 'font-serif text-4xl font-bold text-white' })
-const tabs = tv({ base: 'mt-8 flex flex-wrap gap-3' })
-const tab = tv({ base: 'rounded-full border px-5 py-2 text-sm font-medium transition' })
-const search = tv({
-  base: 'mt-6 flex items-center gap-3 rounded-xl border border-white/10 bg-[#1b1b1f] px-4 py-3 text-[#92929D]',
+const section = tv({ base: 'bg-[#141416] py-16 sm:py-24' })
+const inner = tv({ base: 'mx-auto grid max-w-[1100px] items-center gap-10 px-4 sm:px-6 lg:grid-cols-[minmax(0,380px)_1fr] lg:gap-14' })
+const photoWrap = tv({
+  base: 'relative mx-auto w-full max-w-[340px] overflow-hidden rounded-2xl border border-white/10 bg-[#1b1b1f] shadow-[0_20px_60px_rgba(0,0,0,0.4)]',
 })
-const grid = tv({ base: 'mt-10 grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-5' })
-const member = tv({ base: 'text-center' })
-const avatar = tv({
-  base: 'mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br text-2xl font-bold text-white',
+const photo = tv({ base: 'aspect-[4/5] w-full object-cover object-top' })
+const glow = tv({ base: 'pointer-events-none absolute -inset-4 rounded-3xl bg-[#E97F18]/10 blur-2xl' })
+const copy = tv({ base: 'text-center lg:text-left' })
+const eyebrow = tv({ base: 'text-sm font-medium uppercase tracking-wider text-[#E97F18]' })
+const heading = tv({ base: 'mt-2 font-serif text-3xl font-bold text-white sm:text-4xl' })
+const role = tv({ base: 'mt-2 text-lg font-medium text-white/90' })
+const body = tv({ base: 'mt-6 space-y-4 text-base leading-relaxed text-[#92929D]' })
+const meta = tv({ base: 'mt-6 flex flex-wrap items-center justify-center gap-4 lg:justify-start' })
+const metaItem = tv({ base: 'inline-flex items-center gap-2 text-sm text-[#92929D]' })
+const tags = tv({ base: 'mt-8 flex flex-wrap justify-center gap-2 lg:justify-start' })
+const tag = tv({
+  base: 'rounded-full border border-[#E97F18]/25 bg-[#E97F18]/10 px-3 py-1 text-xs font-medium text-[#E97F18]',
 })
-
-const filters = ['All', 'Organizers', 'Guests'] as const
-
-const people = [
-  { name: 'Angelos N.', role: 'Founder', gradient: 'from-[#15998f] to-[#f16533]' },
-  { name: 'Ops Team', role: 'Support', gradient: 'from-[#E97F18] to-[#F24E1E]' },
-  { name: 'Engineering', role: 'Platform', gradient: 'from-[#6366f1] to-[#8b5cf6]' },
-  { name: 'Organizers', role: 'Event leads', gradient: 'from-[#10b981] to-[#059669]' },
-  { name: 'Community', role: 'Ambassadors', gradient: 'from-[#f59e0b] to-[#ef4444]' },
-]
 
 export function LandingAudience() {
-  const [active, setActive] = useState<(typeof filters)[number]>('All')
-
   return (
     <section id="team" className={section()}>
       <div className={inner()}>
-        <h2 className={heading()}>Meet the SquadPlan team</h2>
-        <div className={tabs()}>
-          {filters.map((filter) => (
-            <button
-              key={filter}
-              type="button"
-              onClick={() => setActive(filter)}
-              className={tab({
-                className:
-                  active === filter
-                    ? 'border-[#E97F18] bg-[#E97F18] text-white'
-                    : 'border-white/10 text-[#92929D] hover:border-white/30 hover:text-white',
-              })}
-            >
-              {filter}
-            </button>
-          ))}
+        <div className="relative">
+          <div className={glow()} />
+          <div className={photoWrap()}>
+            <img src="/images/founder.jpg" alt="Ngabo Angelos, founder of SquadPlan" className={photo()} />
+          </div>
         </div>
-        <div className={search()}>
-          <Search className="h-5 w-5" />
-          <span>Search team members, roles, or support topics</span>
-        </div>
-        <div className={grid()}>
-          {people.map((person) => (
-            <div key={person.name} className={member()}>
-              <div className={avatar({ className: `bg-gradient-to-br ${person.gradient}` })}>
-                {person.name.charAt(0)}
-              </div>
-              <p className="mt-4 font-semibold text-white">{person.name}</p>
-              <p className="text-sm text-[#92929D]">{person.role}</p>
-            </div>
-          ))}
+
+        <div className={copy()}>
+          <p className={eyebrow()}>The team</p>
+          <h2 className={heading()}>It&apos;s just me — for now</h2>
+          <p className={role()}>Ngabo Angelos · Founder &amp; Developer</p>
+
+          <div className={body()}>
+            <p>
+              SquadPlan started from a simple frustration: planning group birthdays, trips, and dinners in Rwanda
+              always turned into messy chats, lost pledges, and &ldquo;who paid what?&rdquo; threads that never ended.
+            </p>
+            <p>
+              I built SquadPlan as a solo developer — design, code, and product — so organizers get one private link,
+              guests can join without an account, and every contribution is tracked in one place. No spreadsheets, no
+              public listings, no chaos.
+            </p>
+            <p>
+              When you use SquadPlan, you&apos;re using something I made end-to-end because I wanted group events to
+              feel organized, not stressful. Questions, feedback, or ideas? I&apos;d love to hear from you.
+            </p>
+          </div>
+
+          <div className={meta()}>
+            <span className={metaItem()}>
+              <MapPin className="h-4 w-4 text-[#E97F18]" />
+              Kigali, Rwanda
+            </span>
+            <span className={metaItem()}>
+              <Code2 className="h-4 w-4 text-[#E97F18]" />
+              Full stack developer
+            </span>
+          </div>
+
+          <div className={tags()}>
+            {['Event planning', 'Product design', 'Solo founder'].map((label) => (
+              <span key={label} className={tag()}>
+                {label}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>

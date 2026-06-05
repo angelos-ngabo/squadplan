@@ -84,12 +84,13 @@ export function UpdatePaymentDialog({
       open={open}
       onOpenChange={setOpen}
       trigger={
-        <Button variant="outline" size="sm">
-          Update
+        <Button variant="outline" size="sm" className="w-full sm:w-auto">
+          <span className="sm:hidden">Update payment</span>
+          <span className="hidden sm:inline">Update</span>
         </Button>
       }
-      title={`Update payment — ${participant.name}`}
-      description="Adjust paid amount and payment status."
+      title={`Update payment`}
+      description={`Adjust payment for ${participant.name}.`}
     >
       <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
         <label className="block">
@@ -125,7 +126,7 @@ export function UpdatePaymentDialog({
           </div>
         </label>
 
-        <div className="flex justify-end gap-2 pt-2">
+        <div className="flex flex-col-reverse gap-2 pt-2 sm:flex-row sm:justify-end">
           <DialogClose asChild>
             <Button variant="outline" type="button">
               Cancel
