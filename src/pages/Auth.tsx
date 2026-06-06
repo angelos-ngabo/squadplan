@@ -230,7 +230,7 @@ export function Auth() {
   const socialPrefix = isLogin ? 'Sign in' : 'Sign up'
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#141416] font-[Inter] text-white">
+    <div className="relative min-h-screen overflow-hidden bg-[#141416] font-sans text-white">
       <div className="pointer-events-none absolute left-0 top-0 h-80 w-80 rounded-full bg-[#E97F18]/10 blur-[120px]" />
       <div className="pointer-events-none absolute bottom-0 right-0 h-96 w-96 rounded-full bg-[#F24E1E]/10 blur-[120px]" />
 

@@ -2,12 +2,21 @@ import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { PageLoader } from './components/page-loader'
 import { FirebaseSetupScreen } from './components/firebase-setup-screen'
 import { ensureFirebaseInit } from './firebase'
 import { router } from './router'
 import './index.css'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 30_000,
+      refetchOnWindowFocus: false,
+      retry: 1,
+    },
+  },
+})
 
 function AppBootstrap() {
   const [ready, setReady] = useState(false)
@@ -21,11 +30,7 @@ function AppBootstrap() {
   }, [])
 
   if (!ready) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-[#141416] text-[#92929D]">
-        Loading...
-      </div>
-    )
+    return <PageLoader />
   }
 
   if (!configured) {

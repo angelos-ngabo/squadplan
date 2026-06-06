@@ -9,7 +9,7 @@ const headerShell = tv({
   base: 'fixed left-0 right-0 top-0 z-50 transition-all duration-300',
   variants: {
     visible: {
-      true: 'translate-y-0 border-b border-white/10 bg-[#141416]/45 backdrop-blur-xl backdrop-saturate-150',
+      true: 'translate-y-0 border-b border-white/10 bg-[#141416]/55 backdrop-blur-md max-md:bg-[#141416]/80 max-md:backdrop-blur-sm md:backdrop-blur-xl md:backdrop-saturate-150',
       false: '-translate-y-full pointer-events-none',
     },
   },

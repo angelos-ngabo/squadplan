@@ -2,6 +2,7 @@ import { initializeApp, type FirebaseApp } from 'firebase/app'
 import { getAuth, type Auth } from 'firebase/auth'
 import { getFirestore, type Firestore } from 'firebase/firestore'
 import {
+  getBundledFirebaseConfig,
   getFirebaseConfigFromEnv,
   isFirebaseConfigured,
   isValidFirebaseConfig,
@@ -25,6 +26,12 @@ export async function initFirebase(): Promise<boolean> {
 
   if (isFirebaseConfigured()) {
     initializeFromConfig(getFirebaseConfigFromEnv())
+    return true
+  }
+
+  const bundled = getBundledFirebaseConfig()
+  if (bundled) {
+    initializeFromConfig(bundled)
     return true
   }
 

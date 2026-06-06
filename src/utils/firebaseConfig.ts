@@ -1,3 +1,5 @@
+import bundledConfig from '../config/firebase-config.json'
+
 const ENV_KEYS: Array<[string, string]> = [
   ['VITE_FIREBASE_API_KEY', 'apiKey'],
   ['VITE_FIREBASE_AUTH_DOMAIN', 'authDomain'],
@@ -24,6 +26,10 @@ export function getFirebaseConfigFromEnv(): FirebaseClientConfig {
   ) as FirebaseClientConfig
 }
 
+export function getBundledFirebaseConfig(): FirebaseClientConfig | null {
+  return isValidFirebaseConfig(bundledConfig) ? bundledConfig : null
+}
+
 export function isValidFirebaseConfig(
   config: Partial<FirebaseClientConfig> | null | undefined,
 ): config is FirebaseClientConfig {
@@ -40,7 +46,7 @@ export function isFirebaseConfigured() {
 
 export async function loadFirebaseConfigFromFile(): Promise<FirebaseClientConfig | null> {
   try {
-    const response = await fetch('/firebase-config.json')
+    const response = await fetch('/firebase-config.json', { cache: 'force-cache' })
     if (!response.ok) return null
     const config = (await response.json()) as Partial<FirebaseClientConfig>
     return isValidFirebaseConfig(config) ? config : null

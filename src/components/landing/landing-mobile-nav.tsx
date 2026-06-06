@@ -10,7 +10,7 @@ const menuButton = tv({
 })
 
 const panel = tv({
-  base: 'fixed left-0 right-0 top-16 z-[100] border-b border-white/10 bg-[#141416]/45 py-2 shadow-2xl backdrop-blur-xl backdrop-saturate-150 sm:top-20 lg:hidden',
+  base: 'fixed left-0 right-0 top-16 z-[100] border-b border-white/10 bg-[#141416]/80 py-2 shadow-2xl backdrop-blur-sm sm:top-20 md:bg-[#141416]/55 md:backdrop-blur-xl md:backdrop-saturate-150 lg:hidden',
 })
 
 const panelLink = tv({
@@ -23,7 +23,7 @@ const ctaButton = tv({
   base: 'block w-full rounded-[10px] bg-[#E97F18] px-4 py-3 text-center text-base font-semibold text-white transition hover:bg-[#d56f10]',
 })
 
-const backdrop = tv({ base: 'fixed inset-0 z-[90] bg-black/40 backdrop-blur-[2px] lg:hidden' })
+const backdrop = tv({ base: 'fixed inset-0 z-[90] bg-black/50 max-md:bg-black/60 lg:hidden' })
 
 export function LandingMobileNav() {
   const { user } = useAuth()
