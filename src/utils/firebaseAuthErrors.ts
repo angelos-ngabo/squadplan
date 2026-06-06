@@ -21,6 +21,14 @@ export function getFirebaseAuthErrorMessage(error: unknown): string {
       return 'Password is too weak. Use at least 6 characters.'
     case 'auth/too-many-requests':
       return 'Too many attempts. Please wait a moment and try again.'
+    case 'auth/requires-recent-login':
+      return 'Please sign out, sign in again, and retry this action.'
+    case 'auth/unauthorized-continue-uri':
+    case 'auth/invalid-continue-uri':
+      return 'This site is not authorized for password reset links. Add it under Firebase Console → Authentication → Settings → Authorized domains.'
+    case 'auth/invalid-action-code':
+    case 'auth/expired-action-code':
+      return 'This reset link is invalid or has expired. Request a new one from the forgot password page.'
     default:
       if (error instanceof Error && error.message) return error.message
       return 'Authentication failed. Please try again.'

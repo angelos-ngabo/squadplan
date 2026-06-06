@@ -5,6 +5,7 @@ import { useForm, type Resolver, type UseFormRegisterReturn } from 'react-hook-f
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useAuth } from '../hooks/useAuth'
+import { ResetPasswordFromLink } from '../components/reset-password-from-link'
 
 const loginSchema = z.object({
   email: z.preprocess(
@@ -198,6 +199,26 @@ export function Auth() {
   })
 
   const redirect = (location.state as { from?: string } | null)?.from ?? '/app'
+  const resetMode = searchParams.get('mode')
+  const resetCode = searchParams.get('oobCode')
+
+  if (resetMode === 'resetPassword' && resetCode) {
+    return (
+      <div className="relative min-h-screen overflow-hidden bg-[#141416] font-sans text-white">
+        <div className="pointer-events-none absolute left-0 top-0 h-80 w-80 rounded-full bg-[#E97F18]/10 blur-[120px]" />
+        <Link
+          to="/"
+          className="absolute left-6 top-6 z-10 inline-flex items-center gap-2 text-sm font-medium text-[#92929D] transition hover:text-[#E97F18] lg:left-10 lg:top-10"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back home
+        </Link>
+        <div className="relative mx-auto flex min-h-screen max-w-[666px] flex-col items-center justify-center px-4 py-20">
+          <ResetPasswordFromLink oobCode={resetCode} />
+        </div>
+      </div>
+    )
+  }
 
   async function onLogin(data: LoginInput) {
     setError('')
@@ -364,12 +385,12 @@ export function Auth() {
         </div>
 
         {isLogin ? (
-          <button
-            type="button"
-            className="mx-auto mt-10 text-xl tracking-[-0.08em] text-[#92929D] underline transition hover:text-[#E97F18] lg:mt-16"
+          <Link
+            to="/forgot-password"
+            className="mx-auto mt-10 block text-center text-xl tracking-[-0.08em] text-[#92929D] underline transition hover:text-[#E97F18] lg:mt-16"
           >
             Forgot Password?
-          </button>
+          </Link>
         ) : null}
 
         <div className="mx-auto mt-auto flex w-full max-w-[1440px] flex-col items-center justify-between gap-4 px-0 pt-16 text-base tracking-[-0.08em] text-[#92929D] sm:flex-row sm:px-[70px] sm:text-lg lg:pt-24">

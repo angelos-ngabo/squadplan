@@ -1,7 +1,5 @@
-import { useState } from 'react'
 import { Home, LogOut, User } from 'lucide-react'
 import { CreateEventDialog } from '../components/create-event-dialog'
-import { AccountSettingsDialog } from '../components/account-settings-dialog'
 import { DashboardToolbar } from '../components/dashboard-toolbar'
 import { EventsTable } from '../components/events-table'
 import { PageWrapper } from '../components/page-wrapper'
@@ -12,10 +10,9 @@ import { useMyEvents } from '../hooks/useMyEvents'
 export function Manage() {
   const { user, logout } = useAuth()
   const { data: events = [], isLoading } = useMyEvents()
-  const [settingsOpen, setSettingsOpen] = useState(false)
 
   const menuItems: DashboardMenuItem[] = [
-    { label: 'Account settings', icon: User, onSelect: () => setSettingsOpen(true) },
+    { type: 'link', label: 'Account settings', icon: User, to: '/app/settings' },
     { type: 'link', label: 'Home', icon: Home, to: '/' },
     { type: 'divider' },
     {
@@ -32,8 +29,6 @@ export function Manage() {
         actions={<CreateEventDialog />}
         menuItems={menuItems}
       />
-
-      <AccountSettingsDialog open={settingsOpen} onOpenChange={setSettingsOpen} />
 
       <PageWrapper>
         <div>

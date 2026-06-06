@@ -95,6 +95,7 @@ export function Dashboard() {
     { label: 'Copy guest join link', icon: Link2, onSelect: () => void copyLink(`/event/${slug}`) },
     { label: 'Copy manage link', icon: Share2, onSelect: () => void copyLink(`/event/${slug}/dashboard`) },
     { type: 'divider' },
+    { type: 'link', label: 'Account settings', icon: User, to: '/app/settings' },
     { type: 'link', label: 'My events', icon: LayoutDashboard, to: '/app' },
     { type: 'link', label: 'Home', icon: Home, to: '/' },
   ]

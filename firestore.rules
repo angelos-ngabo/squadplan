@@ -11,16 +11,16 @@ service cloud.firestore {
       allow list: if request.auth != null && resource.data.organizerId == request.auth.uid;
       allow create: if request.auth != null
         && request.resource.data.organizerId == request.auth.uid;
-      allow update: if isOrganizer(eventId);
+      allow update, delete: if isOrganizer(eventId);
 
       match /participants/{participantId} {
         allow create: if true;
-        allow read, update: if isOrganizer(eventId);
+        allow read, update, delete: if isOrganizer(eventId);
       }
 
       match /activityLog/{logId} {
         allow create: if true;
-        allow read: if isOrganizer(eventId);
+        allow read, delete: if isOrganizer(eventId);
       }
     }
   }
